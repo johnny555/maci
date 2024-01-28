@@ -26,11 +26,10 @@ def generate_launch_description():
         executable='parameter_bridge',
         arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'
                    ],
-        output='screen',
-        parameters=[("tf_prefix","/krytn")]
-        )
+        output='screen'        )
 
     maci = IncludeLaunchDescription(join(get_package_share_directory("maci"), "launch","spawn_maci.launch.py"))
+    moveit = IncludeLaunchDescription(join(get_package_share_directory("maci"), "launch","moveit.launch.py"))
 
 
-    return LaunchDescription([gazebo_sim, bridge, maci])
+    return LaunchDescription([gazebo_sim, bridge, maci, moveit])

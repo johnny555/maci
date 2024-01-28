@@ -27,14 +27,12 @@ def generate_launch_description():
         executable='robot_state_publisher',
         output='both',
         parameters=[{'robot_description':robot_xml, 
-                     'use_sim_time':True, 
-                     'tf_prefix': '/maci'}],
-        namespace="maci",
+                     'use_sim_time':True}],
     )
 
     # Step 3. Spawn a robot in gazebo by listening to the published topic.
     robot = ExecuteProcess(
-        cmd=["ros2", "run", "ros_gz_sim", "create", "-topic", "/maci/robot_description", "-x", "-6.70", "-y","-9.34", "-z", "1.23"],
+        cmd=["ros2", "run", "ros_gz_sim", "create", "-topic", "robot_description", "-x", "-6.70", "-y","-9.34", "-z", "1.23"],
         name="spawn robot",
         output="both"
     )
@@ -43,8 +41,7 @@ def generate_launch_description():
     start_controllers  = Node(
                 package="controller_manager",
                 executable="spawner",
-                arguments=['-c','/maci/controller_manager',
-                           'maci_joint_state_broadcaster', 'maci_controller'],
+                arguments=['maci_joint_state_broadcaster', 'maci_controller'],
                 output="screen",
             )
 

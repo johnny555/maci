@@ -364,12 +364,8 @@
 
     <gazebo>
         <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
-            <controller_manager_prefix_node_name>maci</controller_manager_prefix_node_name>
 
             <parameters>/workspace/install/maci/share/maci/config/ros2_control.yaml</parameters>
-            <ros>
-                <namespace>maci</namespace>
-            </ros>
 
         </plugin>
     </gazebo>
