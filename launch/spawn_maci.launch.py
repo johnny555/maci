@@ -41,7 +41,7 @@ def generate_launch_description():
     start_controllers  = Node(
                 package="controller_manager",
                 executable="spawner",
-                arguments=['maci_joint_state_broadcaster', 'maci_controller'],
+                arguments=['maci_joint_state_broadcaster', 'maci_controller', 'gripper_controller'],
                 output="screen",
             )
 

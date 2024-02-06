@@ -10,14 +10,28 @@
     </xacro:ur_robot>
     <link name="world" />
 
+    <xacro:include filename="$(find robotiq_2f_140_gripper_visualization)/urdf/robotiq_arg2f_140_model.xacro" />
+    <joint name="gripper_connect" type="fixed" >
+        <parent link="ur5_tool0" />
+        <child link="robotiq_arg2f_base_link" />
+    </joint>
+    <ros2_control name="ur5_" type="system">
+        <hardware>
+            <plugin>ign_ros2_control/IgnitionSystem</plugin>
+        </hardware>
+
+        <joint name="finger_joint">
+            <command_interface name="position"/>
+            <state_interface name="position">
+                <param name="initial_value">0.0</param>
+            </state_interface>
+            <state_interface name="velocity"/>
+        </joint>
+    </ros2_control>
     <gazebo>
         <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
-            <controller_manager_prefix_node_name>maci</controller_manager_prefix_node_name>
 
             <parameters>$(find maci)/config/ros2_control.yaml</parameters>
-            <ros>
-                <namespace>maci</namespace>
-            </ros>
 
         </plugin>
     </gazebo>

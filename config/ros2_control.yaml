@@ -5,8 +5,12 @@ controller_manager:
     maci_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
+    gripper_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
     maci_joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
+
 
     use_sim_time: True
 
@@ -28,7 +32,17 @@ maci_controller:
     state_interfaces:
       - position
       - velocity
-
+      
+gripper_controller:
+  ros__parameters:
+    hold_on: true
+    joints: 
+      - finger_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
 # In order for the multi-robot setup to work, we need to load all the params in the robot
 # that loads first. Thus we are going to keep krytn's control parameters here too.
 krytn:
