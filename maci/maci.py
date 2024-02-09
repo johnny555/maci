@@ -23,19 +23,23 @@ def main():
     ac.wait_for_server()
     print("server found")
     traj = JointTrajectory()
-    traj.joint_names = ["finger_joint"]
-    traj.points = [JointTrajectoryPoint(positions=[args.j])]
+    traj.joint_names = ["finger_joint", "left_inner_knuckle_joint", "left_inner_finger_joint",                         
+                        "right_outer_knuckle_joint", "right_inner_knuckle_joint", "right_inner_finger_joint"]
+    
+    pos =  [i * args.j for i in [1, -1, 1, -1, -1, 1] ]
+    
+    traj.points = [JointTrajectoryPoint(positions=pos)]
     
     
     goal = FollowJointTrajectory.Goal()
     goal.trajectory = traj
     goal.goal_time_tolerance = Duration(sec=1)
     
-    tol = JointTolerance(name="finger_joint", position=0.001, velocity=0.001)
+    tol = [JointTolerance(name=n, position=0.001, velocity=0.001) for n in traj.joint_names]
     
     print(traj)
-    goal.path_tolerance = [tol]
-    goal.goal_tolerance = [tol]
+    goal.path_tolerance = tol
+    goal.goal_tolerance = tol
     
     res = ac.send_goal_async(goal)
     print("waiting for goal complete")

@@ -38,6 +38,11 @@ gripper_controller:
     hold_on: true
     joints: 
       - finger_joint
+      - left_inner_knuckle_joint
+      - left_inner_finger_joint
+      - right_outer_knuckle_joint
+      - right_inner_knuckle_joint
+      - right_inner_finger_joint
     command_interfaces:
       - position
     state_interfaces:
