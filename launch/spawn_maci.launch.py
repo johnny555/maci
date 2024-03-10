@@ -18,7 +18,7 @@ def generate_launch_description():
     # 3. Spawn a simulated robot in the gazebo simulation using the published robot description topic. 
 
     # Step 1. Process robot file. 
-    robot_file = join(get_package_share_directory("maci"), "robot_description","maci.urdf")
+    robot_file = join(get_package_share_directory("maci"), "robot_description","maci.urdf.xacro")
     robot_xml = load_xacro(Path(robot_file))
 
     #Step 2. Publish robot file to ros topic /robot_description & static joint positions to /tf

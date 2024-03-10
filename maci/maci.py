@@ -23,10 +23,10 @@ def main():
     ac.wait_for_server()
     print("server found")
     traj = JointTrajectory()
-    traj.joint_names = ["finger_joint", "left_inner_knuckle_joint", "left_inner_finger_joint",                         
-                        "right_outer_knuckle_joint", "right_inner_knuckle_joint", "right_inner_finger_joint"]
+    traj.joint_names = ["finger_joint", "left_inner_finger_joint",                         
+                        "right_outer_knuckle_joint", "right_inner_finger_joint"]
     
-    pos =  [i * args.j for i in [1, -1, 1, -1, -1, 1] ]
+    pos =  [i * args.j for i in [1,  1, -1,  1] ]
     
     traj.points = [JointTrajectoryPoint(positions=pos)]
     

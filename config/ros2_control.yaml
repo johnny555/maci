@@ -11,7 +11,6 @@ controller_manager:
     maci_joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-
     use_sim_time: True
 
 maci_joint_state_broadcaster:
@@ -32,16 +31,14 @@ maci_controller:
     state_interfaces:
       - position
       - velocity
-      
+
 gripper_controller:
   ros__parameters:
     hold_on: true
-    joints: 
+    joints:
       - finger_joint
-      - left_inner_knuckle_joint
       - left_inner_finger_joint
       - right_outer_knuckle_joint
-      - right_inner_knuckle_joint
       - right_inner_finger_joint
     command_interfaces:
       - position
