@@ -26,9 +26,9 @@ setup(
     data_files=create_datafiles(),
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='ros',
+    maintainer='john vial',
     maintainer_email='badwolf.johnnyv@gmail.com',
-    description='TODO: Package description',
+    description='MACI robot ',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
